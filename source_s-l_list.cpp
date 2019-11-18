@@ -26,5 +26,6 @@ int main()
 	print_list(head);
 	pop_list(&head);
 	print_list(head);
+	printf("kekw\n");
 	return 0;
 }
