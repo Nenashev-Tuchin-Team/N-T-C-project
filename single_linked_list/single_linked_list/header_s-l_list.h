@@ -258,6 +258,19 @@ int pop_list(Node** head)
 	}
 	return 1;
 }
-
+/*
+јргументы: указатель на голову списка, искомое значение
+‘ункци€ возвращает указатель на первый узел списка с 
+искомым значением, если такого нет - NULL.
+*/
+Node* list_find(Node* head, int value)
+{
+	Node* curr = head;
+	while (curr->value != value)
+	{
+		curr = curr->next;
+	}
+	return curr;
+}
 
 
