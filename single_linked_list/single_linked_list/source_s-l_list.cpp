@@ -3,6 +3,7 @@
 int main()
 {
 	Node* head = NULL;
+	head = create_list(0);
 	print_list(head);
 	push_head(&head, 5);
 	print_list(head);

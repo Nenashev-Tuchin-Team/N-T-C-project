@@ -10,6 +10,24 @@ typedef struct Node_
 	struct Node_* next;
 } Node;
 /*
+Аргументы: значение головы списка.
+Функция создает голову списка с 
+указанным значением и возвращает
+указатель нее.
+*/
+Node* create_list(int value)
+{
+	Node* head = NULL;
+	head = (Node*)malloc(sizeof(Node));
+	if (head == NULL)
+	{
+		return NULL;
+	}
+	head->value = value;
+	head->next = 0;
+	return head;
+}
+/*
 Аргументы:адрес указателя на голову списка, передаваемое значение
 Функция, добавляющая элемент в голову списка.
 Возвращает 1 в случае успешного добавления элемента
