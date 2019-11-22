@@ -180,7 +180,7 @@ void print_list(Node* head)
 		printf("%d->", head->value);
 		head = head->next;
 	}
-	printf("\n");
+	printf("NULL\n");
 }
 /*
 јргументы: указатель на голову списка, место, значение
@@ -265,12 +265,57 @@ int pop_list(Node** head)
 */
 Node* list_find(Node* head, int value)
 {
+	if (head == NULL)
+	{
+		return NULL;
+	}
 	Node* curr = head;
-	while (curr->value != value)
+	while (curr != NULL && curr->value != value)
 	{
 		curr = curr->next;
 	}
 	return curr;
+}
+/*
+јргументы: адрес указател€ на голову списка, значение 
+‘ункци€ удал€ет все узлы с указанным значением.
+¬озвращает количество удаленных узлов.
+*/
+int remove_value(Node** head, int value)
+{
+	int count = 0;
+	while ((*head) != NULL && (*head)->value == value)
+	{
+		pop_head(head);
+		count++;
+	}
+	if ((*head) == NULL)
+	{
+		return count;
+	}
+	Node* prev = (*head);
+	Node* curr = (*head)->next;
+	if (curr == NULL)
+	{
+		return count;
+	}
+	while (curr != NULL)
+	{
+		if (curr->value == value)
+		{
+			Node* tmp = curr;
+			prev->next = curr->next;
+			curr = curr->next;
+			free(tmp);
+			count++;
+		}
+		else
+		{
+			curr = curr->next;
+			prev = prev->next;
+		}
+	}
+	return count;
 }
 
 

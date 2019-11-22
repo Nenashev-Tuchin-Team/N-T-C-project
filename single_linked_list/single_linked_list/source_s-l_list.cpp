@@ -14,11 +14,19 @@ int main()
 	push_head(&head, 8);
 	print_list(head);
 	push_back(head, 190);
+	print_list(head);
 	if (list_find(head, 190) != NULL)
 	{
 		printf("Finded!\n");
 	}
-	print_list(head);
+	if (list_find(head, 123213) == NULL)
+	{
+		printf("Not Finded!\n");
+	}
+	printf("190: %d\n", remove_value(&head, 190));
+	printf("20: %d\n", remove_value(&head, 20));
+	printf("6: %d\n", remove_value(&head, 6));
+	printf("8: %d\n", remove_value(&head, 8));
 	pop_back(&head);
 	pop_back(&head);
 	pop_back(&head);
