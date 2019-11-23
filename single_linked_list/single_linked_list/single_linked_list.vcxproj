@@ -126,7 +126,7 @@
     <ClInclude Include="header_s-l_list.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source_s-l_list.cpp" />
+    <ClCompile Include="source_s-l_list.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

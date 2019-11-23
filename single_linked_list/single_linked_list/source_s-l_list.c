@@ -15,6 +15,10 @@ int main()
 	print_list(head);
 	push_back(head, 190);
 	print_list(head);
+	push_N(head, 2, 2132);
+	print_list(head);
+	pop_N(&head, 2);
+	print_list(head);
 	if (list_find(head, 190) != NULL)
 	{
 		printf("Finded!\n");

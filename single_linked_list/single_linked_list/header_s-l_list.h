@@ -188,7 +188,7 @@ void print_list(Node* head)
 ≈сли n больше длины списка, то вставит в конец.
 ¬озвращает 1 в случае успеха и 0 в противном случае.
 */
-int push_back(Node* head, int n, int value)
+int push_N(Node* head, int n, int value)
 {
 	if (n < 0)
 	{
@@ -196,7 +196,7 @@ int push_back(Node* head, int n, int value)
 	}
 	int i = 0;
 	Node* tmp = NULL;
-	while (i < n && head->next != NULL)
+	while (i < n - 1 && head->next != NULL)
 	{
 		head = head->next;
 		i++;
