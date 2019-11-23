@@ -1,1 +1,2 @@
-# N-T-C-project
+# Educational C project
+# Authors: Nenashev, Tuchin
