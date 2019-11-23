@@ -1,2 +1,3 @@
 # Educational C project
-# Authors: Nenashev, Tuchin
+## Authors: Nenashev, Tuchin
+## Moscow IPT, 2019.
