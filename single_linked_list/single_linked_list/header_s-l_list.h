@@ -1,4 +1,16 @@
 #pragma once
+/*
+Sigle-linked list project
+Authors: Nenashev Nikolai, Tuchin Igor
+Moscow IPT 2019.
+Файл содержит основные функции для работы 
+с односвязным списком. Для создания списка
+используйте указатель на его голову.
+Пример:
+Node* list1 = NULL;
+Далее воспользуйтесь функцией create_list:
+list1 = create_list(your value);
+*/
 #include<stdlib.h>
 #include<stdio.h>
 /*
