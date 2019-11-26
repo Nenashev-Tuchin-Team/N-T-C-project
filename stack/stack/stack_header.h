@@ -18,74 +18,17 @@ typedef struct Stack_
 	int top;
 } my_stack;
 
-my_stack* stack_create()
-{
-	my_stack* out = NULL;
-	out = (my_stack*)malloc(sizeof(my_stack));
-	if (out == NULL)
-	{
-		exit(OUT_OF_MEMORY);
-	}
-	out->size = INITIAL_SIZE;
-	out->data = (T*)malloc(out->size * sizeof(T));
-	if (out->data == NULL)
-	{
-		free(out);
-		exit(OUT_OF_MEMORY);
-	}
-	out->top = 0;
-	return out;
-}
+my_stack* stack_create();
 
-void delete_stack(my_stack** s)
-{
-	free((*s)->data);
-	free(*s);
-	*s = NULL;
-}
+void delete_stack(my_stack** s);
 
-void resize(my_stack* s)
-{
-	s->size *= MULTIPLIER;
-	s->data = (T*)realloc(s->data, s->size * sizeof(T));
-	if (s->data == NULL)
-	{
-		exit(STACK_OVERFLOW);
-	}
-}
+void resize(my_stack* s);
 
-void implode(my_stack* s)
-{
-	s->size = s->top;
-	s->data = (T*)realloc(s->data, s->size * sizeof(T));
-}
+void implode(my_stack* s);
 
-void stack_push(my_stack* s, T value)
-{
-	if (s->top >= s->size)
-	{
-		resize(s);
-	}
-	s->data[s->top] = value;
-	s->top++;
-}
+void stack_push(my_stack* s, T value);
 
-T stack_pop(my_stack* s)
-{
-	if (s->top <= 0)
-	{
-		exit(STACK_UNDERFLOW);
-	}
-	s->top--;
-	return s->data[s->top];
-}
+T stack_pop(my_stack* s);
 
-T get_top(my_stack* s)
-{
-	if (s->top <= 0)
-	{
-		exit(STACK_UNDERFLOW);
-	}
-	return s->data[s->top - 1];
-}
+T get_top(my_stack* s);
 
