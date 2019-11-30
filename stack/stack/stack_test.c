@@ -10,7 +10,7 @@ int main()
 	{
 		stack_push(stack, i);
 	}
-	for (i = 0; i < 100; i++)
+	for (i = 0; i < 120; i++)
 	{
 		printf("get_top:\t %d\n", get_top(stack));
 		printf("pop:\t %d\n", stack_pop(stack));
