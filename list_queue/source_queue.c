@@ -56,7 +56,6 @@ T get_queue(queue* q)
 	{
 		q->back = NULL;
 	}
-	free(tmp);
 	return value;
 }
 
