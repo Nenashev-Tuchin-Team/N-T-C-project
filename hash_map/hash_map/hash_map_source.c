@@ -5,7 +5,7 @@ int hash1(char* str)
 {
 	unsigned int key = 0;
 	while (*str)
-		key ^= *str++;
+		key += *str++;
 	return key % N;
 }
 
