@@ -32,4 +32,9 @@ void insert_queue(queue* q, T value);
 T get_queue(queue* q);
 //
 void print_queue(queue* q);
+//
+T touch(queue* q);
+//
+void delete_queue(queue* q);
+//
 

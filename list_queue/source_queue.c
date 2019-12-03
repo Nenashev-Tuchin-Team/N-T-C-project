@@ -1,21 +1,5 @@
-#include <stdlib.h>
-#include <stdio.h>
-#define OUT_OF_MEMORY -100
-#define EMPTY_QUEUE -101
 
-typedef int T;
-
-typedef struct Node_
-{
-	T value;
-	struct Node_* next;
-} Node;
-
-typedef struct queue_
-{
-	Node* head;
-	Node* back;
-} queue;
+#include "header_queue.h"
 
 queue* create_q()
 {
@@ -32,7 +16,7 @@ queue* create_q()
 
 int is_empty(queue* q)
 {
-	if (q->head == NULL)
+	if (q == NULL || q->head == NULL)
 	{
 		return 1;
 	}
@@ -89,4 +73,26 @@ void print_queue(queue* q)
 		curr = curr->next;
 	}
 	printf("NULL\n");
+}
+
+T touch(queue* q)
+{
+	if (q == NULL || q->head == NULL)
+	{
+		exit(EMPTY_QUEUE);
+	}
+	return q->head->value;
+}
+
+void delete_queue(queue* q)
+{
+	Node* curr = q->head;
+	Node* tmp = NULL;
+	while (curr != NULL)
+	{
+		tmp = curr;
+		curr = curr->next;
+		free(tmp);
+	}
+	free(q);
 }

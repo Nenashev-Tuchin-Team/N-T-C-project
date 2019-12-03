@@ -15,5 +15,6 @@ int main()
 	{
 		printf("%d\n", get_queue(q));
 	}
+	delete_queue(q);
 	return 0;
 }
