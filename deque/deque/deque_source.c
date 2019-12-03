@@ -1,10 +1,10 @@
 
-#include "header_queue.h"
+#include "deque_header.h"
 
-queue* create_q()
+deque* create_deque()
 {
-	queue* q = NULL;
-	q = (queue*)malloc(sizeof(queue));
+	deque* q = NULL;
+	q = (deque*)malloc(sizeof(deque));
 	if (q == NULL)
 	{
 		exit(OUT_OF_MEMORY);
@@ -14,7 +14,7 @@ queue* create_q()
 	return q;
 }
 
-int is_empty(queue* q)
+int is_empty(deque* q)
 {
 	if (q == NULL || q->head == NULL)
 	{
@@ -23,7 +23,7 @@ int is_empty(queue* q)
 	return 0;
 }
 
-void insert_queue(queue* q, T value)
+void push_back(deque* q, T value)
 {
 	Node* tmp = (Node*)malloc(sizeof(Node));
 	if (tmp == NULL)
@@ -43,11 +43,11 @@ void insert_queue(queue* q, T value)
 	return;
 }
 
-T get_queue(queue* q)
+T get_front(deque* q)
 {
 	if (q->head == NULL)
 	{
-		exit(EMPTY_QUEUE);
+		exit(EMPTY_DEQUE);
 	}
 	Node* tmp = q->head;
 	T value = tmp->value;
@@ -59,7 +59,7 @@ T get_queue(queue* q)
 	return value;
 }
 
-void print_queue(queue* q)
+void print_deque(deque* q)
 {
 	Node* curr = q->head;
 	if (curr == NULL)
@@ -75,16 +75,16 @@ void print_queue(queue* q)
 	printf("NULL\n");
 }
 
-T touch(queue* q)
+T touch_front(deque* q)
 {
 	if (q == NULL || q->head == NULL)
 	{
-		exit(EMPTY_QUEUE);
+		exit(EMPTY_DEQUE);
 	}
 	return q->head->value;
 }
 
-void delete_queue(queue* q)
+void delete_deque(deque* q)
 {
 	Node* curr = q->head;
 	Node* tmp = NULL;
