@@ -8,6 +8,7 @@ Moscow IPT 2019.
 #include <stdio.h>
 #define OUT_OF_MEMORY -100
 #define EMPTY_DEQUE -101
+#define UNINITIALIZED -102
 /*
 Дефайны ошибок.
 */
@@ -19,6 +20,7 @@ typedef struct Node_
 {
 	T value;
 	struct Node_* next;
+	struct Node_* prev;
 } Node;
 /*
 Очередь (указатели на голову и конец списка)
@@ -58,4 +60,12 @@ T touch_front(deque* q);
 Деинициализация (удаление) очереди.
 */
 void delete_deque(deque* q);
-
+/*
+*/
+void push_front(deque* q, T value);
+/*
+*/
+void print_reverse_deque(deque* q);
+/*
+*/
+T touch_back(deque* q);
