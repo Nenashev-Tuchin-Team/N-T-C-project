@@ -196,7 +196,7 @@ T get_back(deque* q)
 	return value;
 	return 0;
 }
-
+	
 T touch_back(deque* q)
 {
 	if (q == NULL)
