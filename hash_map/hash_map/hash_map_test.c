@@ -15,6 +15,14 @@ int main()
 	{
 		insert_value(&((char)i), 5);
 	}
+	for (i = 0; i < N;i++)
+	{
+		insert_value(&((char)i), 7);
+	}
+	for (i = 0; i < N;i++)
+	{
+		insert_value(str, 15);
+	}
 	print_map(hash_table);
 	if (find_key(str) != NULL)
 	{
@@ -31,6 +39,14 @@ int main()
 	else
 	{
 		printf("Not Finded!\n");
+	}
+	if (find_key_and_value("a", 32) != NULL)
+	{
+		printf("**Finded!\n");
+	}
+	else
+	{
+		printf("**Not Finded!\n");
 	}
 	deinit_table(hash_table);
 	return 0;

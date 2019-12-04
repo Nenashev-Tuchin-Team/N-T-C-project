@@ -162,6 +162,7 @@ Node* find_key_and_value(char* str, T value)
 		{
 			return curr;
 		}
+		curr = curr->next;
 	}
 	return NULL;
 }
