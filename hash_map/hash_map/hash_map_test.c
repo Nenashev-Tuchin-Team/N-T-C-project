@@ -13,7 +13,7 @@ int main()
 	print_map(hash_table);
 	for (i = 0; i < N;i++)
 	{
-		insert_value(str, i);
+		insert_value(&((char)i), 5);
 	}
 	print_map(hash_table);
 	if (find_key(str) != NULL)

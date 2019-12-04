@@ -42,6 +42,8 @@ int delete_key(char* str);
 
 Node* find_key(char* str);
 
+Node* find_key_and_value(char* str, T value);
+
 void print_list(list* l);
 
 void print_map(list** hash_map);

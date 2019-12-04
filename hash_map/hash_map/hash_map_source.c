@@ -9,6 +9,11 @@ int hash1(char* str)
 	return key % N;
 }
 
+char* convert_str(char* str)
+{
+
+}
+
 void init_table(list** hash_table)
 {
 	int i = 0;
@@ -29,8 +34,8 @@ void deinit_table(list** map)
 	int i = 0;
 	for (i = 0; i < N; i++)
 	{
-		delete_list(hash_table[i]);
-		hash_table[i] = NULL;
+		delete_list(map[i]);
+		map[i] = NULL;
 	}
 	return;
 }
@@ -47,7 +52,8 @@ void delete_list(list* q)
 	{
 		tmp = curr;
 		curr = curr->next;
-		free(tmp->str);
+		if (tmp->str != NULL)
+			free(tmp->str);
 		free(tmp);
 	}
 	free(q);
@@ -113,6 +119,10 @@ void del_node(list* l, Node* elem)
 
 void insert_value(char* str, T value)
 {
+	if (find_key_and_value(str, value) != NULL)
+	{
+		return;
+	}
 	unsigned int key = hash1(str);
 	push_front(hash_table[key], value, str);
 }
@@ -134,6 +144,21 @@ Node* find_key(char* str)
 	while (curr != NULL)
 	{
 		if (strcmp(curr->str, str) == 0)
+		{
+			return curr;
+		}
+		curr = curr->next;
+	}
+	return NULL;
+}
+
+Node* find_key_and_value(char* str, T value)
+{
+	unsigned int key = hash1(str);
+	Node* curr = hash_table[key]->head;
+	while (curr != NULL)
+	{
+		if (strcmp(curr->str, str) == 0 && curr->value == value)
 		{
 			return curr;
 		}
