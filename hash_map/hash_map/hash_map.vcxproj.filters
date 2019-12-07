@@ -21,6 +21,9 @@
     <ClCompile Include="hash_map_test.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="hash_map_main.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hash_map_header.h">

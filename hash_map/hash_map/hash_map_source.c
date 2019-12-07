@@ -9,11 +9,6 @@ int hash1(char* str)
 	return key % N;
 }
 
-char* convert_str(char* str)
-{
-
-}
-
 void init_table(list** hash_table)
 {
 	int i = 0;
@@ -129,12 +124,13 @@ void insert_value(char* str, T value)
 
 int delete_key(char* str)
 {
-	if (find_key(str) != NULL)
+	int count = 0;
+	while (find_key(str) != NULL)
 	{
 		del_node(hash_table[hash1(str)], find_key(str));
-		return 1;
+		count++;
 	}
-	return 0;
+	return count;
 }
 
 Node* find_key(char* str)

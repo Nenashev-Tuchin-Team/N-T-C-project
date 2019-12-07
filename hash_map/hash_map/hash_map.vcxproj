@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="hash_map_main.c" />
     <ClCompile Include="hash_map_source.c" />
     <ClCompile Include="hash_map_test.c" />
   </ItemGroup>

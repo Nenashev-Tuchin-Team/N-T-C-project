@@ -132,7 +132,18 @@ void print_map(list** hash_map);
 Ничего не возвращает.
 */
 void delete_list(list* q);
-
+/*
+Тест на инициализацию и деинициализацю.
+*/
+int test1();
+/*
+Тест на функции инсерт и файнд key_and_value
+*/
+int test2();
+/*
+Тест функций удаления и find
+*/
+int test3();
 
 
 
