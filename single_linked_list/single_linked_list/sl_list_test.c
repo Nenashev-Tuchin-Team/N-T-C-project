@@ -32,6 +32,7 @@ int main()
 			test7();
 			break;
 		case 9: return 0; break;
+		default: printf("Wrong input!\n"); break;
 	}
 	goto START;
 	return 0;
