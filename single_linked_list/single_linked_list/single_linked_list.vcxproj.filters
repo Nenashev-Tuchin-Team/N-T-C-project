@@ -26,5 +26,11 @@
     <ClCompile Include="sl_list_test.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="task.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="test.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

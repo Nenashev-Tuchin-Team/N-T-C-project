@@ -71,9 +71,13 @@ Node* get_back(Node* head)
 	return curr;
 }
 
-int push_back(Node* head, int value)
+int push_back(Node** head, int value)
 {
-	Node* back = get_back(head);
+	Node* back = get_back((*head));
+	if (back == NULL)
+	{
+		return push_head(head, value);
+	}
 	Node* tmp = NULL;
 	tmp = (Node*)malloc(sizeof(Node));
 	if (tmp == NULL)
@@ -254,5 +258,6 @@ int remove_value(Node** head, int value)
 	}
 	return count;
 }
+
 
 

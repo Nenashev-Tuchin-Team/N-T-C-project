@@ -1,7 +1,7 @@
 #pragma once
 /*
 Sigle-linked list project
-Authors: Nenashev Nikolai, Tuchin Igor
+Authors: Nenashev Nikolai.
 Moscow IPT 2019.
 Файл содержит основные функции для работы 
 с односвязным списком. Для создания списка
@@ -10,6 +10,7 @@ Moscow IPT 2019.
 Node* list1 = NULL;
 Далее воспользуйтесь функцией create_list:
 list1 = create_list(your value);
+!!!!!!НЕ ЗАБУДЬТЕ ДЕИНИЦИАЛИЗИРОВАТЬ СПИСОК ФУНКЦИЕЙ pop_list!!!!!!!!
 */
 #include<stdlib.h>
 #include<stdio.h>
@@ -109,5 +110,22 @@ Node* list_find(Node* head, int value);
 Возвращает количество удаленных узлов.
 */
 int remove_value(Node** head, int value);
-
-
+/*
+Функция из задания, которая конструирует список вида
+N->(N-1)->...->1->NULL
+Возвращает пустой указатель при N = 0, иначе возвращает
+указатель на голову списка.
+*/
+Node* first_N_int(int N);
+/*
+Тест на создание и удаление.
+*/
+int test1();
+/*
+Тест функций pop и push head.
+*/
+int test2();
+/*
+Тест функций pop и push back.
+*/
+int test3();
