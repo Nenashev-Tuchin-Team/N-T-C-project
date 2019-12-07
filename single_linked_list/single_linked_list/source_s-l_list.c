@@ -145,7 +145,7 @@ void print_list(Node* head)
 	printf("NULL\n");
 }
 
-int push_N(Node* head, int n, int value)
+int push_N(Node** head, int n, int value)
 {
 	if (n < 0)
 	{
@@ -153,9 +153,14 @@ int push_N(Node* head, int n, int value)
 	}
 	int i = 0;
 	Node* tmp = NULL;
-	while (i < n - 1 && head->next != NULL)
+	Node* curr = *head;
+	if (curr == NULL || n == 0)
 	{
-		head = head->next;
+		return push_head(head, value);
+	}
+	while (i < n - 1 && curr->next != NULL)
+	{
+		curr = curr->next;
 		i++;
 	}
 	tmp = (Node*)malloc(sizeof(Node));
@@ -164,15 +169,15 @@ int push_N(Node* head, int n, int value)
 		return 0;
 	}
 	tmp->value = value;
-	if (head->next == NULL)
+	if (curr->next == NULL)
 	{
 		tmp->next = NULL;
 	}
 	else
 	{
-		tmp->next = head->next;
+		tmp->next = curr->next;
 	}
-	head->next = tmp;
+	curr->next = tmp;
 	return 1;
 }
 
@@ -189,6 +194,10 @@ int pop_N(Node** head, int n)
 	int i = 0;
 	Node* prev = get_N((*head), n - 1);
 	Node* curr = get_N((*head), n);
+	if (curr == NULL)
+	{
+		return pop_back(head);
+	}
 	prev->next = curr->next;
 	free(curr);
 	return 1;

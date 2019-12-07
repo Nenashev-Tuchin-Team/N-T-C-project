@@ -1,10 +1,18 @@
 #include "header_s-l_list.h"
+#include <time.h>
+#include <conio.h>
 #define N 10000
+#define M 100
 
 int test1()
 {
 	Node* head = NULL;
 	head = create_list(0);
+	int i = 0;
+	for (i = 0; i < M; i++)
+	{
+		push_head(&head, i);
+	}
 	pop_list(&head);
 	printf("TEST_1 PASSED.\n");
 	return 1;
@@ -57,30 +65,121 @@ int test3()
 	return 0;
 }
 
-	//if (list_find(head, 190) != NULL)
-	//{
-	//	printf("Finded!\n");
-	//}
-	//if (list_find(head, 123213) == NULL)
-	//{
-	//	printf("Not Finded!\n");
-	//}
-	//printf("190: %d\n", remove_value(&head, 190));
-	//printf("20: %d\n", remove_value(&head, 20));
-	//printf("6: %d\n", remove_value(&head, 6));
-	//printf("8: %d\n", remove_value(&head, 8));
-	//pop_back(&head);
-	//pop_back(&head);
-	//pop_back(&head);
-	//print_list(head);
-	//pop_back(&head);
-	//print_list(head);
-	//push_head(&head, 6);
-	//push_head(&head, 7);
-	//push_head(&head, 8);
-	//print_list(head);
-	//pop_list(&head);
-	//print_list(head);
-	//Node* list2 = first_N_int(100);
-	//print_list(list2);
-	//pop_list(&list2);
+int test4()
+{
+	Node* head = NULL;
+	int i = 0;
+	srand(time(NULL));
+	int count = 0;
+	count += push_N(&head, 0, 321);
+	for (i = 1; i < M; i++)
+	{
+		count += push_N(&head, rand() % 500, rand() % 100);
+	}
+	if (count != M)
+	{
+		printf("TEST_4 FAILED.\n");
+		return 0;
+	}
+	for (i = 0; i < M; i++)
+	{
+		count -= pop_N(&head, rand() % M);
+	}
+	if (count != 0)
+	{
+		printf("TEST_4 FAILED.\n");
+		return 0;
+	}
+	pop_list(&head);
+	printf("TEST_4 PASSED.\n");
+	return 1;
+	pop_list(&head);
+}
+
+int test5()
+{
+	Node* head = NULL;
+	int i = 0;
+	int count = 0;
+	for (i = 0; i < M; i++)
+	{
+		push_head(&head, i);
+	}
+	for (i = 0; i < M; i++)
+	{
+		if (list_find(head, i)->value != i)
+		{
+			printf("TEST_5 FAILED.\n");
+			return 0;
+		}
+	}
+	if (list_find(head, M) != NULL)
+	{
+		printf("TEST_5 FAILED.\n");
+		return 0;
+	}
+	pop_list(&head);
+	printf("TEST_5 PASSED.\n");
+	return 1;
+}
+
+int test6()
+{
+	Node* head = NULL;
+	int i = 0;
+	int count = 0;
+	for (i = 0; i < N; i++)
+	{
+		push_head(&head, M);
+	}
+	for (i = 0; i < N; i++)
+	{
+		count += remove_value(&head, M);
+	}
+	if (count != N)
+	{
+		printf("TEST_6 FAILED.\n");
+		return 0;
+	}
+	pop_list(&head);
+	printf("TEST_6 PASSED.\n");
+	return 1;
+}
+
+int test7()
+{
+	Node* head = NULL;
+	head = first_N_int(0);
+	if (head != NULL)
+	{
+		printf("TEST_7 FAILED.\n");
+		return 0;
+	}
+	int i = 0;
+	int n = 0;
+	srand(time(NULL));
+	for (i = 0; i < M; i++)
+	{
+		n = rand() % N;
+		head = first_N_int(n);
+		if (n == 0 && head != NULL)
+		{
+			pop_list(&head);
+			printf("TEST_7 FAILED.\n");
+			return 0;
+		}
+		else
+		{
+			if (head != NULL && head->value != n)
+			{
+				pop_list(&head);
+				printf("TEST_7 FAILED.\n");
+				return 0;
+			}
+		}
+		pop_list(&head);
+	}
+	pop_list(&head);
+	printf("TEST_7 PASSED.\n");
+	return 1;
+}
