@@ -4,3 +4,5 @@
 ### Team member 1: Nenashev Nikolai
 ### Team member 2: Tuchin Igor
 #### Environment: Visual Studio 2019
+##### True hash_map in hash_map folder.
+##### hash_tab - is our seminar practice.
