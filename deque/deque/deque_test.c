@@ -36,6 +36,6 @@ int main()
 	{
 		push_front(q, i);
 	}
-	//delete_deque(q);
+	delete_deque(q);
 	return 0;
 }
