@@ -126,6 +126,7 @@
     <ClInclude Include="stack_header.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.c" />
     <ClCompile Include="stack_source.c" />
     <ClCompile Include="stack_test.c" />
   </ItemGroup>

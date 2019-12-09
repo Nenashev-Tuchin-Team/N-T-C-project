@@ -4,7 +4,8 @@ typedef int T;
 #define STACK_UNDERFLOW -101
 #define OUT_OF_MEMORY -102
 #define INITIAL_SIZE 10
-#define MULTIPLIER 2 
+#define MULTIPLIER 2
+#define IMPLODE_ERROR -103
 typedef struct Stack_
 {
 	T* data;
@@ -41,17 +42,28 @@ void delete_stack(my_stack** s)
 void resize(my_stack* s)
 {
 	s->size *= MULTIPLIER;
-	s->data = (T*)realloc(s->data, s->size * sizeof(T));
-	if (s->data == NULL)
+	T* tmp = NULL;
+	tmp = (T*)realloc(s->data, s->size * sizeof(T));
+	if (tmp == NULL)
 	{
+		delete_stack(&s);
 		exit(STACK_OVERFLOW);
 	}
+	s->data = tmp;
+	return;
 }
 
 void implode(my_stack* s)
 {
 	s->size = s->top;
-	s->data = (T*)realloc(s->data, s->size * sizeof(T));
+	T* tmp = (T*)realloc(s->data, s->size * sizeof(T));
+	if (tmp == NULL)
+	{
+		delete_stack(&s);
+		exit(IMPLODE_ERROR);
+	}
+	s->data = tmp;
+	return;
 }
 
 void stack_push(my_stack* s, T value)
@@ -68,6 +80,7 @@ T stack_pop(my_stack* s)
 {
 	if (s->top <= 0)
 	{
+		delete_stack(&s);
 		exit(STACK_UNDERFLOW);
 	}
 	s->top--;
@@ -78,6 +91,7 @@ T get_top(my_stack* s)
 {
 	if (s->top <= 0)
 	{
+		delete_stack(&s);
 		exit(STACK_UNDERFLOW);
 	}
 	return s->data[s->top - 1];

@@ -69,4 +69,23 @@ T stack_pop(my_stack* s);
 Возвращает вершину стека.
 */
 T get_top(my_stack* s);
-
+/*
+Инициализация и деинициализация
+*/
+int test1();
+/*
+Тест Push и pop 
+*/
+int test2();
+/*
+Тест implode
+*/
+int test3();
+/*
+Тест на STACK_OVERFLOW
+*/
+int test4();
+/*
+Тест на STACK_UNDERFLOW
+*/
+int test5();
