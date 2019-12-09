@@ -1,41 +1,132 @@
 #include "deque_header.h"
-#include <stdio.h>
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-/*
-Библиотека для нахождения утечек памяти.
-*/
-int main()
+#define M 1000000
+
+int test1()
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	int i = 0;
 	deque* q = create_deque();
-	for (i = 0; i < 100; i++)
+	int i = 0;
+	for (i = 0; i < M; i++)
 	{
 		push_back(q, i);
 	}
-	print_deque(q);
-	print_reverse_deque(q);
-	for (i = 100; i > 0; i--)
+	delete_deque(q);
+	printf("TEST_1 PASSED.\n");
+	return 1;
+}
+
+int test2()
+{
+	deque* q = create_deque();
+	int i = 0;
+	int n = 0;
+	for (i = 0; i < M; i++)
 	{
-		printf("%d\n", get_front(q));
+		push_back(q, i);
 	}
-	print_deque(q);
-	for (i = 0; i < 100; i++)
+	if (q->back == NULL || q->head == NULL)
 	{
-		push_front(q, i);
+		printf("TEST_2 FAILED.\n");
+		delete_deque(q);
+		return 0;
 	}
-	print_deque(q);
-	for (i = 100; i > 0; i--)
+	for (i = M - 1; i >= 0; i--)
 	{
-		printf("%d\n", get_back(q));
-	}
-	print_deque(q);
-	for (i = 0; i < 100; i++)
-	{
-		push_front(q, i);
+		if (get_back(q) != i)
+		{
+			printf("TEST_2 FAILED.\n");
+			delete_deque(q);
+			return 0;
+		}
 	}
 	delete_deque(q);
-	return 0;
+	printf("TEST_2 PASSED.\n");
+	return 1;
+}
+
+int test3()
+{
+	deque* q = create_deque();
+	int i = 0;
+	int n = 0;
+	for (i = 0; i < M; i++)
+	{
+		push_front(q, i);
+	}
+	if (q->back == NULL || q->head == NULL)
+	{
+		printf("TEST_3 FAILED.\n");
+		delete_deque(q);
+		return 0;
+	}
+	for (i = M - 1; i >= 0; i--)
+	{
+		if (get_front(q) != i)
+		{
+			printf("TEST_3 FAILED.\n");
+			delete_deque(q);
+			return 0;
+		}
+	}
+	delete_deque(q);
+	printf("TEST_3 PASSED.\n");
+	return 1;
+}
+int test4()
+{
+	deque* q = create_deque();
+	int i = 0;
+	int n = 0;
+	for (i = 0; i < M; i++)
+	{
+		push_front(q, i);
+	}
+	if (q->back == NULL || q->head == NULL)
+	{
+		printf("TEST_4 FAILED.\n");
+		delete_deque(q);
+		return 0;
+	}
+	for (i = M - 1; i >= 0; i--)
+	{
+		if (touch_front(q) != i)
+		{
+			printf("TEST_4 FAILED.\n");
+			delete_deque(q);
+			return 0;
+		}
+		get_front(q);
+	}
+	delete_deque(q);
+	printf("TEST_4 PASSED.\n");
+	return 1;
+}
+
+int test5()
+{
+	deque* q = create_deque();
+	int i = 0;
+	int n = 0;
+	for (i = 0; i < M; i++)
+	{
+		push_back(q, i);
+	}
+	if (q->back == NULL || q->head == NULL)
+	{
+		printf("TEST_2 FAILED.\n");
+		delete_deque(q);
+		return 0;
+	}
+	for (i = M - 1; i >= 0; i--)
+	{
+		if (touch_back(q) != i)
+		{
+			printf("TEST_5 FAILED.\n");
+			delete_deque(q);
+			return 0;
+		}
+		get_back(q);
+	}
+	delete_deque(q);
+	printf("TEST_5 PASSED.\n");
+	return 1;
 }

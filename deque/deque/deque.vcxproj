@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="deque_source.c" />
     <ClCompile Include="deque_test.c" />
+    <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deque_header.h" />
