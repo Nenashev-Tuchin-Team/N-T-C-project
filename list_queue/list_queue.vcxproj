@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.c" />
     <ClCompile Include="source_queue.c" />
     <ClCompile Include="test_queue.c" />
   </ItemGroup>

@@ -28,6 +28,7 @@ void insert_queue(queue* q, T value)
 	Node* tmp = (Node*)malloc(sizeof(Node));
 	if (tmp == NULL)
 	{
+		delete_queue(q);
 		exit(OUT_OF_MEMORY);
 	}
 	tmp->value = value;
@@ -56,6 +57,7 @@ T get_queue(queue* q)
 	{
 		q->back = NULL;
 	}
+	free(tmp);
 	return value;
 }
 
@@ -79,6 +81,7 @@ T touch(queue* q)
 {
 	if (q == NULL || q->head == NULL)
 	{
+		delete_queue(q);
 		exit(EMPTY_QUEUE);
 	}
 	return q->head->value;
