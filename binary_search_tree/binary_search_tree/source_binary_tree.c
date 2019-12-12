@@ -26,76 +26,57 @@ Node* create_node(T value, Node* parent)
 	return tmp;
 }
 
-void insert(tree* t, T value)
+int insert(tree* t, Node* root, T value)
 {
 	if (t == NULL)
 	{
 		exit(UNINITIALIZED);
+		return 0;
 	}
-	if (t->root == NULL)
+	if (root == NULL)
 	{
 		t->root = create_node(value, NULL);
-		return;
+		return 1;
 	}
-	Node* tmp = NULL;
-	tmp = t->root;
-	while (tmp != NULL)
+	Node* tmp = root;
+	if (value >= tmp->value && tmp->right == NULL)
 	{
-		if (value >= tmp->value)
-		{
-			if (tmp->right != NULL)
-			{
-				tmp = tmp->right;
-				continue;
-			}
-			else
-			{
-				tmp->right = create_node(value, tmp);
-				return;
-			}
-		}
-		else
-		{
-			if (tmp->left != NULL)
-			{
-				tmp = tmp->left;
-				continue;
-			}
-			else
-			{
-				tmp->left = create_node(value, tmp);
-				return;
-			}
-		}
+		tmp->right = create_node(value, tmp);
+		return 1;
+	}
+	if (value < tmp->value && tmp->left == NULL)
+	{
+		tmp->left = create_node(value, tmp);
+		return 1;
+	}
+	if (value >= tmp->value)
+	{
+		insert(t, tmp->right, value);
+	}
+	if (value < tmp->value)
+	{
+		insert(t, tmp->left, value);
 	}
 }
-
 
 Node* find_value(Node* t, T value) 
 {
 	if (t == NULL)
 	{
-		exit(UNINITIALIZED);
+		return NULL;
 	}
-	Node* tmp = t;
-	while (tmp != NULL) 
+	if (t->value > value) 
 	{
-		if (tmp->value > value) 
-		{
-			tmp = tmp->left;
-			continue;
-		}
-		else if (tmp->value < value)
-		{
-			tmp = tmp->right;
-			continue;
-		}
-		else 
-		{
-			return tmp;
-		}
+		find_value(t->right, value);
 	}
-	return NULL;
+	else if (t->value < value)
+	{
+		find_value(t->left, value);
+	}
+	else 
+	{
+		return t;
+	}
 }
 
 Node* find_max(Node* t)
@@ -188,13 +169,14 @@ void delete_value(tree* t, T value)
 }
 
 
-void printTree(Node* t, const char* dir, int level) 
+void printTree(Node* t) 
 {
-	Node* tmp = t;
-	if (tmp != NULL) 
+	if (t != NULL)
 	{
-		printf("lvl %d %s = %d\n", level, dir, tmp->value);
-		printTree(tmp->left, "left", level + 1);
-		printTree(tmp->right, "right", level + 1);
+		printf("( %d ", t->value);
+		printTree(t->left);
+		printf(")");
+		printTree(t->right);
+		printf(")");
 	}
 }

@@ -30,7 +30,7 @@ tree* init_tree();
 
 Node* create_node(T value, Node* parent);
 
-void insert(tree* t, T value);
+int insert(tree* t, Node* root, T value);
 
 Node* find_value(Node* t, T value);
 
@@ -42,4 +42,4 @@ void remove_node(Node* target);
 
 void delete_value(tree* t, T value);
 
-void printTree(Node* t, const char* dir, int level);
+void printTree(Node* t);
