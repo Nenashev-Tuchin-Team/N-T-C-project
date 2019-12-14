@@ -63,21 +63,22 @@ int insert(tree* t, Node* root, T value)
 
 Node* find_value(Node* t, T value) 
 {
-	Node* tmp = t;
-	if (tmp->value == value)
+	if (t == NULL)
 	{
-		return tmp;
+		return NULL;
 	}
-	else if (tmp->left != NULL)
+	if (value > t->value)
 	{
-		return find_value(tmp->left, value);
+		return find_value(t->right, value);
 	}
-	else if (tmp->right != NULL)
+	if (value < t->value)
 	{
-		return find_value(tmp->right, value);
+		return find_value(t->left, value);
 	}
 	else
-		return NULL;
+	{
+		return t;
+	}
 }
 
 Node* find_max(tree* t, Node* root)
