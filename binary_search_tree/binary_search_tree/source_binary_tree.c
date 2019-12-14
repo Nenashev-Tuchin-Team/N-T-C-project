@@ -52,36 +52,32 @@ int insert(tree* t, Node* root, T value)
 	}
 	if (value > tmp->value)
 	{
-		insert(t, tmp->right, value);
+		return insert(t, tmp->right, value);
 	}
 	if (value < tmp->value)
 	{
-		insert(t, tmp->left, value);
+		return insert(t, tmp->left, value);
 	}
-	if (value == tmp->value)
-	{
-		return 0;
-	}
+	return 0;
 }
 
 Node* find_value(Node* t, T value) 
 {
-	if (t == NULL)
+	Node* tmp = t;
+	if (tmp->value == value)
 	{
+		return tmp;
+	}
+	else if (tmp->left != NULL)
+	{
+		return find_value(tmp->left, value);
+	}
+	else if (tmp->right != NULL)
+	{
+		return find_value(tmp->right, value);
+	}
+	else
 		return NULL;
-	}
-	if (t->value > value)
-	{
-		return find_value(t->right, value);
-	}
-	else if (t->value < value)
-	{
-		return find_value(t->left, value);
-	}
-	else if (t->value == value)
-	{
-		return t;
-	}
 }
 
 Node* find_max(tree* t, Node* root)
@@ -179,7 +175,6 @@ void print_pref(Node* t)
 	{
 		printf("( %d ", t->value);
 		print_pref(t->left);
-		printf(")");
 		print_pref(t->right);
 		printf(")");
 	}
@@ -189,10 +184,9 @@ void print_post(Node* t)
 {
 	if (t != NULL)
 	{
+		printf("(");
 		print_post(t->left);
-		printf("(");
 		print_post(t->right);
-		printf("(");
 		printf(" %d )", t->value);
 	}
 }
