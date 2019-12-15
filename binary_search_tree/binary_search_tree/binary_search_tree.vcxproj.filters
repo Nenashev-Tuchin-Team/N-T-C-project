@@ -21,6 +21,9 @@
     <ClCompile Include="binaty_tree_test.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="tree_main.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="binary_tree_header.h">

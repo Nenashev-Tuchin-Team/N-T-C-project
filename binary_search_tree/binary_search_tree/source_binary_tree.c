@@ -1,23 +1,26 @@
 #include "binary_tree_header.h"
 
 
-tree* init_tree() 
-{
-	tree* tmp = (tree*)malloc(sizeof(tree));
-	if (tmp == NULL)
-	{
-		exit(OUT_OF_MEMORY);
-	}
-	tmp->root = NULL;
-	return tmp;
-}
-
-Node* create_node(tree* t, T value, Node* parent)
+Node* init_tree(T value)
 {
 	Node* tmp = (Node*)malloc(sizeof(Node));
 	if (tmp == NULL)
 	{
-		deinit_tree(t, t->root);
+		exit(OUT_OF_MEMORY);
+	}
+	tmp->left = NULL;
+	tmp->right = NULL;
+	tmp->parent = NULL;
+	tmp->value = value;
+	return tmp;
+}
+
+Node* create_node(Node* root, T value, Node* parent)
+{
+	Node* tmp = (Node*)malloc(sizeof(Node));
+	if (tmp == NULL)
+	{
+		deinit_tree(root);
 		exit(OUT_OF_MEMORY);
 	}
 	tmp->parent = parent;
@@ -27,36 +30,26 @@ Node* create_node(tree* t, T value, Node* parent)
 	return tmp;
 }
 
-int insert(tree* t, Node* root, T value)
+int insert(Node* root, T value)
 {
-	if (t == NULL)
-	{
-		exit(UNINITIALIZED);
-		return 0;
-	}
-	if (root == NULL)
-	{
-		t->root = create_node(t, value, NULL);
-		return 1;
-	}
 	Node* tmp = root;
 	if (value > tmp->value && tmp->right == NULL)
 	{
-		tmp->right = create_node(t, value, tmp);
+		tmp->right = create_node(root, value, tmp);
 		return 1;
 	}
 	if (value < tmp->value && tmp->left == NULL)
 	{
-		tmp->left = create_node(t, value, tmp);
+		tmp->left = create_node(root, value, tmp);
 		return 1;
 	}
 	if (value > tmp->value)
 	{
-		return insert(t, tmp->right, value);
+		return insert(tmp->right, value);
 	}
 	if (value < tmp->value)
 	{
-		return insert(t, tmp->left, value);
+		return insert(tmp->left, value);
 	}
 	return 0;
 }
@@ -81,12 +74,9 @@ Node* find_value(Node* t, T value)
 	}
 }
 
-Node* find_max(tree* t, Node* root)
+Node* find_max(Node* root)
 {
-	if (t == NULL)
-	{
-		exit(UNINITIALIZED);
-	}
+
 	Node* tmp = root;
 	while (tmp->right) 
 	{
@@ -95,12 +85,8 @@ Node* find_max(tree* t, Node* root)
 	return tmp;
 }
 
-Node* find_min(tree* t, Node* root)
+Node* find_min(Node* root)
 {
-	if (t == NULL)
-	{
-		exit(UNINITIALIZED);
-	}
 	Node* tmp = root;
 	while (tmp->left) 
 	{
@@ -109,65 +95,50 @@ Node* find_min(tree* t, Node* root)
 	return tmp;
 }
 
-void remove_node(tree* t, Node* target)
+Node* delete_value(Node* root, T value)
 {
-	if (target->left != NULL && target->right != NULL) 
+	if (root == NULL)
 	{
-		Node* localMax = find_max(t, target->left);
-		target->value = localMax->value;
-		remove_node(t, localMax);
-		return;
+		return NULL;
 	}
-	else if (target->left != NULL) 
+	if (root != NULL && root->value > value) 
 	{
-		if (target == target->parent->left) 
-		{
-			target->parent->left = target->left;
-		}
-		else 
-		{
-			target->parent->right = target->left;
-		}
+		root->left = delete_value(root->left, value);
+		return root;
 	}
-	else if (target->right) 
+	else if (root->value < value) 
 	{
-		if (target == target->parent->right)
-		{
-			target->parent->right = target->right;
-		}
-		else 
-		{
-			target->parent->left = target->right;
-		}
+		root->right = delete_value(root->right, value);
+		return root;
 	}
-	else 
+	else
 	{
-		if (target == target->parent->left) 
+		if (root->left != NULL && root->right != NULL)
 		{
-			target->parent->left = NULL;
+			Node* locMax = find_max(root->left);
+			root->value = locMax->value;
+			root->left = delete_value(root->left, locMax->value);
+			return root;
 		}
-		else 
+		else if (root->left != NULL) 
 		{
-			target->parent->right = NULL;
+			Node* tmp = root->left;
+			free(root);
+			return tmp;
 		}
-	}
-	free(target);
-}
+		else if (root->right != NULL)
+		{
+			Node* tmp = root->right;
+			free(root);
+			return tmp;
+		}
+		else
+		{
+			free(root);
+			return NULL;
+		}
 
-
-int delete_value(tree* t, T value)
-{
-	if (t == NULL)
-	{
-		exit(UNINITIALIZED);
 	}
-	Node* target = find_value(t->root, value);
-	if (target != NULL)
-	{
-		remove_node(t, target);
-		return 1;
-	}
-	return 0;
 }
 
 void print_pref(Node* t) 
@@ -192,22 +163,20 @@ void print_post(Node* t)
 	}
 }
 
-void deinit_tree(tree* t, Node* curr)
+void deinit_tree(Node* curr)
 {
-	if (t == NULL)
-	{
-		exit(UNINITIALIZED);
-	}
 	if (curr == NULL)
 	{
 		return;
 	}
-	deinit_tree(t, curr->left);
-	deinit_tree(t, curr->right);
+	if (curr != NULL)
+	{
+		deinit_tree(curr->left);
+		deinit_tree(curr->right);
+	}
 	if (curr->parent == NULL)
 	{
 		free(curr);
-		free(t);
 		return;
 	}
 	if (curr->left == NULL && curr->right == NULL)

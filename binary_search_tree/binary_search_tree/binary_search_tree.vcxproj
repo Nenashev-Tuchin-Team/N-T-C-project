@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="binaty_tree_test.c" />
     <ClCompile Include="source_binary_tree.c" />
+    <ClCompile Include="tree_main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="binary_tree_header.h" />
