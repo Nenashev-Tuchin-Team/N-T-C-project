@@ -1,10 +1,6 @@
-# Educational C project
-## Authors: Nenashev, Tuchin
-## Moscow IPT, 2019.
+# Educational C++/ Assambler project
+## Authors: Nenashev Nikolai
+## Moscow IPT, 2020.
 ### Team member 1: Nenashev Nikolai
-### Team member 2: Tuchin Igor
 #### Environment: Visual Studio 2019
-##### True hash_map in hash_map folder.
-##### hash_tab - is our seminar practice.
-##### DONE: Hash, deque, stack, sigle-linked list, queue, binary search tree
-##### IN THE PROCESS: -
+
