@@ -78,7 +78,7 @@ void stack_push(my_stack* s, T value)
 
 T stack_pop(my_stack* s)
 {
-	if (s->top <= 0)
+	if (s->top < 0)
 	{
 		delete_stack(&s);
 		exit(STACK_UNDERFLOW);
@@ -89,7 +89,7 @@ T stack_pop(my_stack* s)
 
 T get_top(my_stack* s)
 {
-	if (s->top <= 0)
+	if (s->top < 0)
 	{
 		delete_stack(&s);
 		exit(STACK_UNDERFLOW);

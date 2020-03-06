@@ -1,6 +1,7 @@
 #include "stack_header.h"
 #include<stdlib.h>
 #include<stdio.h>
+#include <string.h>
 #define M 100000
 #define MM 1000000000
 

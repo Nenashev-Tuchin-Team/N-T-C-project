@@ -129,6 +129,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="stack_source.c" />
     <ClCompile Include="stack_test.c" />
+    <ClCompile Include="task.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
